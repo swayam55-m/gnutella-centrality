@@ -1,16 +1,8 @@
-// centrality.rs
-// Purpose: Implements closeness and betweenness centrality algorithms on the graph.
-
-// This module computes centrality metrics on directed graphs using shortest path logic.
-// Useful for understanding influence and traffic roles in networks.
-
 use crate::graph::Graph;
 use petgraph::graph::NodeIndex;
 use petgraph::visit::{Bfs, EdgeRef};
 use std::collections::{HashMap, VecDeque};
 
-/// Computes closeness centrality for each node.
-/// Output: HashMap from NodeIndex to closeness score.
 pub fn compute_closeness(graph: &Graph) -> HashMap<NodeIndex, f64> {
     let n = graph.node_count();
     let mut scores = HashMap::new();
@@ -55,8 +47,6 @@ pub fn compute_closeness(graph: &Graph) -> HashMap<NodeIndex, f64> {
     scores
 }
 
-/// Computes betweenness centrality using Brandes' algorithm.
-/// Output: HashMap from NodeIndex to betweenness score.
 pub fn compute_betweenness(graph: &Graph) -> HashMap<NodeIndex, f64> {
     let mut betweenness = HashMap::new();
 
@@ -109,7 +99,7 @@ pub fn compute_betweenness(graph: &Graph) -> HashMap<NodeIndex, f64> {
     }
 
     for val in betweenness.values_mut() {
-        *val /= 2.0; // normalization for undirected graphs (here we keep it simple)
+        *val /= 2.0; 
     }
 
     betweenness
