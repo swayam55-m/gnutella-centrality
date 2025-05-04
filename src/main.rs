@@ -1,6 +1,3 @@
-// main.rs
-// Main orchestrator of the program.
-// Loads the graph, computes centrality, and prints results.
 mod graph;
 mod centrality;
 mod visualize;
@@ -19,14 +16,11 @@ fn display_top(title: &str, scores: &std::collections::HashMap<petgraph::graph::
         println!("Node {:?}: {:.4}", node.index(), score);
     }
 }
-
 fn main() {
     let (graph, id_map) = load_graph("data/p2p-Gnutella08.txt");
     println!("Graph loaded with {} nodes and {} edges", graph.node_count(), graph.edge_count());
-
     let closeness = compute_closeness(&graph);
     let betweenness = compute_betweenness(&graph);
-
     display_top("Closeness Centrality", &closeness);
     display_top("Betweenness Centrality", &betweenness);
     draw_bar_chart(
@@ -35,7 +29,6 @@ fn main() {
         &closeness,
         10,
     ).unwrap();
-
     draw_bar_chart(
         "Top 10 Nodes by Betweenness Centrality",
         "betweenness_chart.png",
@@ -51,7 +44,7 @@ mod tests {
     use super::*;
     use crate::graph::load_graph;
     use crate::centrality::{compute_closeness, compute_betweenness};
-
+  
     #[test]
     fn test_closeness_nonnegative() {
         let (graph, _) = load_graph("data/p2p-Gnutella08.txt");
