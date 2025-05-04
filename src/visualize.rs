@@ -1,16 +1,6 @@
-// visualize.rs
-// Purpose: Draws bar charts for centrality scores using Plotters crate.
-
 use plotters::prelude::*;
 use std::collections::HashMap;
 use petgraph::graph::NodeIndex;
-
-/// Draws a bar chart of top-N centrality scores.
-/// Inputs: 
-/// - title of chart
-/// - output file name
-/// - node-score map
-/// - number of top entries to draw
 pub fn draw_bar_chart(
     title: &str,
     filename: &str,
